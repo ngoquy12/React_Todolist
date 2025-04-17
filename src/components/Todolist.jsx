@@ -66,6 +66,7 @@ export default function Todolist() {
     }
   };
 
+  // Thay đổi trạng thái công việc
   const handleChangeStatus = (idUpdate) => {
     const newListJob = allJobs.map((job) =>
       job.id === idUpdate ? { ...job, status: !job.status } : job
@@ -75,19 +76,23 @@ export default function Todolist() {
     setAllJobs(newListJob);
   };
 
+  // Mở modal xác nhận xóa công việc
   const handleShowModal = () => {
     setIsShowModalDelete(true);
   };
 
+  // Đóng modal xác nhận xóa công việc
   const handleCloseModal = () => {
     setIsShowModalDelete(false);
   };
 
+  // Xác nhận xóa công việc
   const handleConfirmDelete = (id) => {
     handleShowModal();
     setId(id);
   };
 
+  // Xóa công việc
   const handleDelete = () => {
     const newListJob = allJobs.filter((job) => job.id !== id);
     localStorage.setItem("jobs", JSON.stringify(newListJob));
@@ -96,6 +101,7 @@ export default function Todolist() {
     setId(null);
   };
 
+  // Lấy thông tin công việc để sửa
   const handleGetJobInfo = (job) => {
     if (job) {
       setInputValue(job.name);
